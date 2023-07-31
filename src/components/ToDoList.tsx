@@ -1,5 +1,6 @@
 
 import {FilterValuesType} from "../App"
+import { useState } from "react";
 export type TaskType = {
   id: string;
   name: string;
@@ -11,11 +12,17 @@ export type PropsType = {
   tasks: Array<TaskType>;
   removeTask: (id: string) => void;
   changeFilter: (value:FilterValuesType)=>void;
+  addTask: (title:string) => void;
 };
 
 function ToDoList(props: PropsType) {
+ const [taskToAdd,setTasktoAdd] =useState("")
+
+
   return (
     <div>
+      <input type="text" value = {taskToAdd} onChange={(e)=>{setTasktoAdd(e.currentTarget.value)}}/>
+      <button onClick={()=>{props.addTask(taskToAdd)}}>Добавить задачу</button>
       <ul className="to-do-list">
         {props.tasks.map((t) => (
           <li key={t.id}>
@@ -50,3 +57,4 @@ function ToDoList(props: PropsType) {
   );
 }
 export default ToDoList;
+
