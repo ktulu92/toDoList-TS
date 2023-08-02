@@ -1,40 +1,37 @@
 
-import {FilterValuesType} from "../App"
+// import {PropsType} from '../types/types'
 import { useState } from "react";
-export type TaskType = {
-  id: string;
-  name: string;
-  isDone: boolean;
-};
+import TaskStore from "../stores/TaskStore"
+import {observer} from "mobx-react-lite"
 
-export type PropsType = {
-  // name: string;
-  tasks: Array<TaskType>;
-  removeTask: (id: string) => void;
-  changeFilter: (value:FilterValuesType)=>void;
-  addTask: (title:string) => void;
-};
 
-function ToDoList(props: PropsType) {
- const [taskToAdd,setTasktoAdd] =useState("")
+
+const ToDoList= observer(()=> {
+
+
+//  const [taskToAdd,setTasktoAdd] =useState("")
 
 
   return (
-    <div>
-      <input type="text" value = {taskToAdd} onChange={(e)=>{setTasktoAdd(e.currentTarget.value)}}/>
-      <button onClick={()=>{props.addTask(taskToAdd)}}>Добавить задачу</button>
+    <div>     
+      {/* <input type="text" value = {taskToAdd} onChange={(e)=>{setTasktoAdd(e.currentTarget.value)}}/> */}
+      <button 
+      // onClick={()=>
+      //   {TaskStore.addTask()}}
+        >Добавить задачу</button>
       <ul className="to-do-list">
-        {props.tasks.map((t) => (
+        {TaskStore.tasks.map((t) => (
           <li key={t.id}>
             <span>{t.name}</span>
             <input type="checkbox"></input>
-            <button onClick={() => props.removeTask(t.id)}>Удалить</button>
+            <button onClick={() => TaskStore.removeTask(t.id)}>Удалить</button>
+        
           </li>
         ))}
       </ul>
-      <button
+      {/* <button
         onClick={() => {
-          props.changeFilter("all");
+          TaskStore.changeFilter("all");
         }}
       >
         All
@@ -52,9 +49,9 @@ function ToDoList(props: PropsType) {
         }}
       >
         Completed
-      </button>
+      </button> */}
     </div>
   );
-}
+})
 export default ToDoList;
 
