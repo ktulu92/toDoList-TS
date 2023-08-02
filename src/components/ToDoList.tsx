@@ -1,35 +1,30 @@
-
 // import {PropsType} from '../types/types'
 import { useState } from "react";
-import TaskStore from "../stores/TaskStore"
-import {observer} from "mobx-react-lite"
+import TaskStore from "../stores/TaskStore";
+import { observer } from "mobx-react-lite";
 
-
-
-const ToDoList= observer(()=> {
-
-
-//  const [taskToAdd,setTasktoAdd] =useState("")
-
+const ToDoList = observer(() => {
+  //  const [taskToAdd,setTasktoAdd] =useState("")
 
   return (
-    <div>     
+    <div>
       {/* <input type="text" value = {taskToAdd} onChange={(e)=>{setTasktoAdd(e.currentTarget.value)}}/> */}
-      <button 
+      <button
       // onClick={()=>
       //   {TaskStore.addTask()}}
-        >Добавить задачу</button>
+      >
+        Добавить задачу
+      </button>
       <ul className="to-do-list">
         {TaskStore.tasks.map((t) => (
           <li key={t.id}>
             <span>{t.name}</span>
             <input type="checkbox"></input>
             <button onClick={() => TaskStore.removeTask(t.id)}>Удалить</button>
-        
           </li>
         ))}
       </ul>
-      {/* <button
+      <button
         onClick={() => {
           TaskStore.changeFilter("all");
         }}
@@ -38,20 +33,19 @@ const ToDoList= observer(()=> {
       </button>
       <button
         onClick={() => {
-          props.changeFilter("active");
+          TaskStore.changeFilter("active");
         }}
       >
         Active
       </button>
       <button
         onClick={() => {
-          props.changeFilter("completed");
+          TaskStore.changeFilter("completed");
         }}
       >
         Completed
-      </button> */}
+      </button>
     </div>
   );
-})
+});
 export default ToDoList;
-

@@ -1,3 +1,4 @@
+
 export type TaskType = {
     id: string;
     name: string;
@@ -5,7 +6,7 @@ export type TaskType = {
   };
   
 
-  export type FilterValuesType = "all" | "completed" | "active";
+
 
 //   export type PropsType = {
 //     // name: string;
@@ -21,7 +22,7 @@ export type TaskType = {
     // name: string;
     tasks: Array<TaskType>;
     removeTask: (id: string) => void;
-    // changeFilter: (value:FilterValuesType)=>void;
+    changeFilter: (value:string)=>void;
     addTask: (title:string) => void;
   };
   
